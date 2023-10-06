@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 const localePath = useLocalePath()
 
-definePageMeta({
-  middleware: 'auth'
-})
+  definePageMeta({
+    layout: 'default',
+    //middleware: ["guest"],
+  })
 
 const movies = ref([])
 const searchError = ref('No ha realizado una busqueda.')

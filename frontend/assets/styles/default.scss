@@ -1,3 +1,47 @@
 .detailRow {
     padding-top:30px;
 }
+.noDeco {
+    text-decoration: none;
+    color:inherit;
+}
+.detailCard {
+    background-color: rgba(31 112 135 / 62%) !important;
+}
+.dividerSmall {
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.centerText {
+    text-align: center;
+}
+.footerExt {
+    margin-top:100px;
+    background-color: darkslategrey;
+}
+.benefitText {
+    color:white !important;
+}
+.gradientContent {
+    height:100%; 
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,212,255,0) 100%);
+}
+.containerExt {
+    background: #000; 
+    padding:0 !important;
+}
+.holderExt {
+    height:350px; 
+    background-size:cover !important;   
+}
+.spaceBot50 {
+    margin-bottom:50px;
+}
+.spaceTop50 {
+    margin-top:50px;
+
+}

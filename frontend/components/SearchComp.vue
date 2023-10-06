@@ -13,7 +13,7 @@ const search = async () => {
     const { valid } = await form.value.validate();
     if ( valid ) {
       let getData = await useApiComp(runtimeConfig.public.apiMovies, 'GET', { apikey: runtimeConfig.public.apiMoviesKey, s: query.value, type: movieType.value, y: movieDate.value})
-      movies.value = getData.value.Search
+      movies.value = getData.value.Search || []
       emit('setMovies', movies.value)
     }
 }
@@ -35,10 +35,8 @@ const validate = async () => {
       const { valid } = await form.value.validate();
 
       if (valid) {
-        console.log("valid")
         return true
       } else {
-        console.log("invalid")
         return false
       }
       
@@ -48,7 +46,6 @@ const validate = async () => {
 <template>
   <v-card
     title="Busqueda de peliculas"
-    variant="tonal"
     style="width:100%"
   >
     <v-card-text>

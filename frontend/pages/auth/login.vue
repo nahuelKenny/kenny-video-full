@@ -2,9 +2,53 @@
 import { defineComponent, ref } from 'vue';
 
   definePageMeta({
-    layout: 'external'
+    layout: 'external',
+    //middleware: ["guest"],
   })
 
+interface Credentials {
+    username: string;
+    password: string;
+}
+
+const { login } = useAuth();
+const config = useRuntimeConfig();
+const router = useRouter();
+
+const credentials: Credentials = reactive({
+    username: "",
+    password: "",
+});
+const nameRules = ref([
+      (v: string) => !!v || 'El usuario es obligatorio',
+  ]);
+
+const error = ref<string>("");
+const show1= ref<boolean>(false);
+  const form = ref<any>(null)
+
+const validate = async () => {  
+  const { valid } = await form.value.validate();
+
+    if (valid) {
+      try {
+        console.log("valid form try")
+          error.value = "";
+          //login with bakend
+          //await login(credentials.username, credentials.password, true);
+          //navigate to home
+          router.push(config.public.homeUrl);
+      } catch (err) {
+          error.value = err as string;
+      }
+    } else {
+      console.log("fallo")
+    }
+}
+
+//-------------------
+
+/*
   const router = useRouter()
   const form = ref(null)
   const userName = ref('');
@@ -19,11 +63,9 @@ import { defineComponent, ref } from 'vue';
   const checkbox = ref(false);
 
   const validate = async () => {
-    console.log(form.value)
     const { valid } = await form.value.validate();
 
     if (valid) {
-      console.log('Form is valid');
       router.push({ path: "/movies" });
     } 
     return false
@@ -33,7 +75,7 @@ import { defineComponent, ref } from 'vue';
     this.$refs.form.resetValidation();
   };
 
-   
+   */
   
 </script>
 
@@ -42,7 +84,6 @@ import { defineComponent, ref } from 'vue';
     <v-row no-gutters>
       <v-col cols="12" class="d-flex justify-center">
         <v-card
-          :loading="loading"
           title="Ingresar"
           variant="tonal"
           class="loginCard"
@@ -50,21 +91,24 @@ import { defineComponent, ref } from 'vue';
         <v-card-text>
            <v-form ref="form">
             <v-text-field
-              v-model="userName"
-              :counter="10"
+              id="username"
+              v-model="credentials.username"
               :rules="nameRules"
               label="Email de usuario"
               required
+              autocomplete="off"
             ></v-text-field>
 
             <v-text-field
-              v-model="password"
+              id="password"
+              v-model="credentials.password"
               :rules="nameRules"
               label="Contraseña"
               required
               :type="show1 ? 'text' : 'password'"
               :append-inner-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append-inner="show1 = !show1"
+              autocomplete="off"
             ></v-text-field>
 
             <div class="d-flex flex-column">
@@ -75,14 +119,6 @@ import { defineComponent, ref } from 'vue';
                 @click="validate"
               >
                 Ingresar
-              </v-btn>
-              <v-btn
-                color="warning"
-                class="mt-4"
-                block
-                @click="registerClick"
-              >
-                Registrarme
               </v-btn>
             </div>
           </v-form>

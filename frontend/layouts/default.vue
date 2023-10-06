@@ -14,7 +14,11 @@ function toggleTheme () {
     <v-app-bar :elevation="0">
       <v-app-bar-title>
         <NuxtLink :to="`/movies`">
-          KennyClub
+          <v-img
+            width="80"
+            :aspect-ratio="1"
+            src="/img/logo2-2.png"
+          ></v-img>
         </NuxtLink>
       </v-app-bar-title>
       <template v-slot:append>
@@ -31,13 +35,18 @@ function toggleTheme () {
             </v-btn>
           </template>
           <v-list>
-            <v-list-item
-              v-for="n in 5"
-              :key="n"
-              link
-            >
-              <v-list-item-title v-text="'Item ' + n"></v-list-item-title>
-            </v-list-item>
+            <v-hover>
+              <template v-slot:default="{ isHovering, props }">
+                <v-list-item
+                v-bind="props"
+                :color="isHovering ? 'primary' : undefined"
+                >
+                  <NuxtLink class="noDeco" :to="`/`">
+                    <v-list-item-title v-text="'Cerrar sesión'"></v-list-item-title>
+                  </NuxtLink>
+                </v-list-item>
+              </template>
+            </v-hover>
           </v-list>
         </v-menu>
       </template>

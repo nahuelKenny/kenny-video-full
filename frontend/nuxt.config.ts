@@ -2,6 +2,7 @@
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  extends: ["./api"],
   modules: [
     '@nuxtjs/i18n',
     '@nuxt/image',
@@ -53,8 +54,12 @@ export default defineNuxtConfig({
     // Keys within public, will be also exposed to the client-side
     public: {
       apiMovies: process.env.API_MOVIES || "http://google.com",
-      apiMoviesKey: process.env.API_MOVIES_KEY || "123456"
-    }
+      apiMoviesKey: process.env.API_MOVIES_KEY || "123456",
+      baseUrl: "http://localhost:3000",
+      homeUrl: "/movies",
+      loginUrl: "/login",
+      verificationUrl: "/verify-email",
+    },
   }
 
 })

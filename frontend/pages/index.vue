@@ -1,36 +1,35 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+  definePageMeta({
+    layout: 'external',
+    //middleware: ["guest"],
+  })
+</script>
 
 <template>
-   <v-container fluid >
-    <v-row no-gutters style="margin-bottom:50px;">
+   <v-container fluid class="containerExt"  >
+    <v-row no-gutters class="spaceBot50">
       <v-col cols="12">
-        <v-sheet  style="height:350px; background-image:url('/img/bg1.jpg'); background-size:cover"> 
-          <!--<NuxtImg fit="cover" src="/img/bg1.jpg"  width="900px" format="webp" />-->
-          <v-col cols="6" style="height:100%; background: rgb(0,0,0);
-background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,212,255,0) 100%);">
+        <v-sheet  class="holderExt" style="background-image:url('/img/bg1.jpg');"> 
+          <v-col cols="6" class="gradientContent">
             <div class="cardLoginIndex" >
             <v-card
-            title="Peliculas y Series"
-            subtitle="Amplio catalogo de pelis y series"
-            variant="outlined"
-            style="margin-top:50px;"
+              title="Peliculas y Series"
+              subtitle="Amplio catalogo de pelis y series"
+              variant="outlined"
+              class="spaceTop50"
             >  
               <v-card-actions>
                 <div style="width:270px">
                   <NuxtLink to="/auth/login">
-                  <v-btn variant="tonal">
+                  <v-btn variant="flat">
                     Eres miembro? Inicia sesión
                   </v-btn>
                   </NuxtLink>
                   <v-divider 
                     inset 
-                    style="width: 100%;
-                      text-align: center;
-                      margin: auto;
-                      margin-top: 10px;
-                      margin-bottom: 10px;"
+                    class="dividerSmall"
                   ></v-divider>
-                  <v-btn variant="tonal">
+                  <v-btn variant="flat" disabled>
                     Registrarse (7 días gratis)
                   </v-btn>
                 </div>
@@ -44,20 +43,27 @@ background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,2
         </v-sheet>
       </v-col>
     </v-row>
-    <v-row no-gutters>
-      <v-col cols="4" class="d-flex justify-center">
-        <NuxtImg fit="contain" src="/img/benefit1.png" />
-        <span>sarasa</span>
+    <v-row no-gutters >
+      <v-col cols="4" class="d-flex justify-center centerText">
+        <div>
+          <NuxtImg fit="contain" src="/img/benefit1.png" />
+          <div class="benefitText">Miralos desde cualquier lugar</div>
+        </div>
       </v-col>
-      <v-col cols="4" class="d-flex justify-center">
-        <NuxtImg fit="contain" src="/img/benefit2.png" />
-        <span>sarasa</span>
+      <v-col cols="4" class="d-flex justify-center centerText ">
+        <div>
+          <NuxtImg fit="contain" src="/img/benefit2.png" />
+          <div class="benefitText">Descargalo para ver sin conexión</div>
+        </div>
       </v-col>
-      <v-col cols="4" class="d-flex justify-center">
-        <NuxtImg fit="contain" src="/img/benefit3.png" />
-        <span>sarasa</span>
+      <v-col cols="4" class="d-flex justify-center centerText">
+        <div>
+          <NuxtImg fit="contain" src="/img/benefit3.png" />
+          <div class="benefitText">Variedad de dispositivos compatibles</div>
+        </div>
       </v-col>
     </v-row>
+    <Footer />
   </v-container>
 </template>
 

@@ -2,17 +2,17 @@
     const slides =
     [
         {
-            name: 'Slide1',
+            name: 'Slide de novedades 1',
             img: '/img/bg1.jpg',
             caption: 'a very good movie'
         },
         {
-            name: 'Slide1',
+            name: 'Más novedades',
             img: '/img/bg2.jpg',
             caption: 'a very good movie'
         },
         {
-            name: 'Slide1',
+            name: 'Últimas novedades',
             img: '/img/bg2.jpg',
             caption: 'a very good movie'
         },

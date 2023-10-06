@@ -5,6 +5,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "start": "nuxt start",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -20,9 +21,11 @@
     "@mdi/font": "^7.2.96",
     "@nuxt/image": "^1.0.0-rc.3",
     "@pinia/nuxt": "^0.4.11",
+    "@types/set-cookie-parser": "^2.4.4",
     "pinia": "^2.1.6",
     "sass": "^1.69.0",
     "save-dev": "^0.0.1-security",
+    "set-cookie-parser": "^2.6.0",
     "vite-plugin-vuetify": "^1.0.2",
     "vuetify": "^3.3.20"
   }

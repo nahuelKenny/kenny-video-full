@@ -23,6 +23,7 @@ useHead({
           <v-card
               color="#1F7087"
               theme="dark"
+              class="detailCard"
             >
               <div class="d-flex flex-no-wrap justify-space-between">
                 <v-row

@@ -11,12 +11,18 @@ function toggleTheme () {
 <template>
  <div>
     <v-app-bar  :elevation="0"  style="padding-bottom_50px;">
+      <v-app-bar-title>
+        <NuxtLink :to="`/`">
+          <v-img
+            width="80"
+            :aspect-ratio="1"
+            src="/img/logo2-2.png"
+          ></v-img>
+        </NuxtLink>
+      </v-app-bar-title>
       <template v-slot:append>
-        <v-btn @click="toggleTheme">toggle theme</v-btn>
+        <v-btn icon="mdi-theme-light-dark" @click="toggleTheme"></v-btn>
 
-        <v-btn icon="mdi-magnify"></v-btn>
-
-        <v-btn icon="mdi-dots-vertical"></v-btn>
       </template>
     </v-app-bar>
     <v-main class="mainContainer">
