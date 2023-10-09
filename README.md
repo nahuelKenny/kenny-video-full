@@ -30,6 +30,11 @@ u can change this going to /pages/movies/index.vue  and pages/movies/[id].vue an
 "definePageMeta" removing the "guest" param, this will make the page accessible only with  
 valid user logged in
 
+update2: in pages/login and pages/register for testing purposes if error occur with users backend
+u can still go to movies and check omdb api, this can be chanegd commentir line 50 (login) and 44 (register)
+these line will route u even if something happend in backend or there is no backend.
+
+
 for backend u can do the same
 
 ```bash
