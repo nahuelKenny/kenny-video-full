@@ -3,7 +3,7 @@ import { defineComponent, ref } from 'vue';
 
   definePageMeta({
     layout: 'external',
-    //middleware: ["guest"],
+    middleware: ["guest"],
   })
 
 interface Credentials {
@@ -25,58 +25,23 @@ const nameRules = ref([
 
 const error = ref<string>("");
 const show1= ref<boolean>(false);
-  const form = ref<any>(null)
+const form = ref<any>(null)
 
 const validate = async () => {  
   const { valid } = await form.value.validate();
 
     if (valid) {
-      try {
-        console.log("valid form try")
           error.value = "";
           //login with bakend
-          //await login(credentials.username, credentials.password, true);
+          await login(credentials.username, credentials.password, true);
           //navigate to home
-          router.push(config.public.homeUrl);
-      } catch (err) {
-          error.value = err as string;
-      }
+          //router.push(config.public.homeUrl);
+      
     } else {
-      console.log("fallo")
+      error.value = "Verifique los campos e intente de nuevo"
     }
 }
 
-//-------------------
-
-/*
-  const router = useRouter()
-  const form = ref(null)
-  const userName = ref('');
-  const password = ref('');
-  const show1= ref(false);
-  const nameRules = ref([
-      (v: string) => !!v || 'El usuario es obligatorio',
-      (v: string) => (v && v.length >= 10) || 'Debe contener más de 10 caracteres',
-  ]);
-  const select = ref(null);
-
-  const checkbox = ref(false);
-
-  const validate = async () => {
-    const { valid } = await form.value.validate();
-
-    if (valid) {
-      router.push({ path: "/movies" });
-    } 
-    return false
-  };
-
-  const registerClick = () => {
-    this.$refs.form.resetValidation();
-  };
-
-   */
-  
 </script>
 
 <template>

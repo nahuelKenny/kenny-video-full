@@ -3,6 +3,19 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
   devtools: { enabled: true },
   extends: ["./api"],
+  runtimeConfig: {
+    // The private keys which are only available within server-side
+    apiServer: "serverKey",
+    // Keys within public, will be also exposed to the client-side
+    public: {
+      apiMovies: process.env.API_MOVIES || "http://google.com",
+      apiMoviesKey: process.env.API_MOVIES_KEY || "123456",
+      baseUrl: "http://localhost:3000",
+      homeUrl: "/movies",
+      loginUrl: "/auth/login",
+      verificationUrl: "/verify-email",
+    },
+  },
   modules: [
     '@nuxtjs/i18n',
     '@nuxt/image',
@@ -48,18 +61,6 @@ export default defineNuxtConfig({
       ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
     ],
   },
-  runtimeConfig: {
-    // The private keys which are only available within server-side
-    apiServer: "serverKey",
-    // Keys within public, will be also exposed to the client-side
-    public: {
-      apiMovies: process.env.API_MOVIES || "http://google.com",
-      apiMoviesKey: process.env.API_MOVIES_KEY || "123456",
-      baseUrl: "http://localhost:3000",
-      homeUrl: "/movies",
-      loginUrl: "/login",
-      verificationUrl: "/verify-email",
-    },
-  }
+  
 
 })

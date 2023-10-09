@@ -1,8 +1,13 @@
 <script lang="ts" setup>
+import { useRouter } from 'vue-router'
 import { useTheme } from 'vuetify'
 
 const theme = useTheme()
+const router = useRouter()
 
+const goToHome = () => {
+  return router.push("/")
+}
 function toggleTheme () {
   theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
 }
@@ -12,13 +17,13 @@ function toggleTheme () {
  <div>
     <v-app-bar  :elevation="0"  style="padding-bottom_50px;">
       <v-app-bar-title>
-        <NuxtLink :to="`/`">
           <v-img
+            class="clickable"
             width="80"
             :aspect-ratio="1"
             src="/img/logo2-2.png"
+            @click="goToHome"
           ></v-img>
-        </NuxtLink>
       </v-app-bar-title>
       <template v-slot:append>
         <v-btn icon="mdi-theme-light-dark" @click="toggleTheme"></v-btn>

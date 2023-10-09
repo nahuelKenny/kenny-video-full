@@ -117,10 +117,14 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         },
 
         async onResponseError({ response }) {
+            console.log("respon se error")
+
             if (
                 apiConfig.redirectUnauthenticated &&
                 UNAUTHENTICATED_STATUSES.has(response.status)
             ) {
+                console.log("response error 1")
+
                 await navigateTo(config.public.loginUrl);
 
                 return;
@@ -130,13 +134,17 @@ export default defineNuxtPlugin(async (nuxtApp) => {
                 apiConfig.redirectUnverified &&
                 response.status === UNVERIFIED_USER_STATUS
             ) {
+                console.log("response error 2")
                 await navigateTo(config.public.verificationUrl);
 
                 return;
             }
 
             if (response.status === VALIDATION_ERROR_STATUS) {
+                console.log("validation error status")
+                await navigateTo(config.public.baseUrl);
                 throw new ApiError(response._data);
+
             }
         },
     };

@@ -15,11 +15,9 @@ export const useAuth = () => {
         password: string,
         remember = true
     ): Promise<any> {
-        console.log("login 1")
         if (isAuthenticated.value === true) {
             return;
         }
-        console.log("login 2")
         await authentication.login(email, password, remember);
         await fetchUser();
 
@@ -45,13 +43,14 @@ export const useAuth = () => {
 
     async function logout(): Promise<any> {
         if (isAuthenticated.value === false) {
+            await router.push(config.public.baseUrl);
             return;
         }
 
         await authentication.logout();
         user.value = null;
 
-        await router.push(config.public.loginUrl);
+        await router.push(config.public.baseUrl);
     }
 
     return {

@@ -2,10 +2,10 @@
 import { useTheme } from 'vuetify'
 
 const theme = useTheme()
+const { logout } = useAuth();
 
 function toggleTheme () {
   theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
-  //localStorage.setItem("theme", this.$vuetify.theme.dark.toString())
 }
 </script>
   
@@ -40,9 +40,10 @@ function toggleTheme () {
                 <v-list-item
                 v-bind="props"
                 :color="isHovering ? 'primary' : undefined"
+                @click="logout"
                 >
-                  <NuxtLink class="noDeco" :to="`/`">
-                    <v-list-item-title v-text="'Cerrar sesión'"></v-list-item-title>
+                  <NuxtLink class="noDeco" >
+                    <v-list-item-title v-text="'Cerrar sesión'" ></v-list-item-title>
                   </NuxtLink>
                 </v-list-item>
               </template>
