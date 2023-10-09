@@ -5,6 +5,10 @@ const runtimeConfig = useRuntimeConfig();
 const route = useRoute();
 const data = await useApiComp(runtimeConfig.public.apiMovies, 'GET', { apikey: runtimeConfig.public.apiMoviesKey, i: route.params.id })
 
+definePageMeta({
+  middleware: ["auth", "guest"],
+})
+
 useHead({
   title: data.value.Title,
   meta: [

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 definePageMeta({
    middleware: ["guest"],
+   layout: 'external'
 });
 
 interface Credentials {
@@ -22,7 +23,9 @@ const credentials: Credentials = reactive({
 });
 
 const error = ref<string>("");
-const show1= ref<boolean>(false);
+const show1 = ref<boolean>(false);
+const show2 = ref<boolean>(false);
+
 const form = ref<any>(null)
 
 async function submit() {
@@ -41,10 +44,17 @@ async function submit() {
           router.push(config.public.homeUrl);
       } catch (err) {
           error.value = err as string;
+          //for testing purposes will ignore backend auth and go to /movies that has the "guest" profile 
+          //u can remove that deleting the "guest" param fro definePageMeta in /movies
+          //also disable next line if u want to go with real user auth
+          router.push(config.public.homeUrl);
       }
     } else {
       error.value = "Verifique los campos e intente de nuevo"
     }
+}
+const goToLogin = () => {
+  return router.push("login")
 }
 </script>
 
@@ -95,11 +105,27 @@ async function submit() {
               label="Repetir contraseña"
               required
               :type="show1 ? 'text' : 'password'"
-              :append-inner-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-              @click:append-inner="show1 = !show1"
+              :append-inner-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append-inner="show2 = !show2"
               autocomplete="off"
             ></v-text-field>
-            <button type="submit" @click="validate">Registrarme</button>
+            <v-btn
+                color="success"
+                class="mt-4"
+                block
+                @click="submit"
+              >
+                Registrar
+              </v-btn>
+              <v-divider />
+              <v-btn
+                color="warning"
+                class="mt-4"
+                block
+                @click="goToLogin"
+              >
+                Tengo usuario
+              </v-btn>
             <div>
               <small>{{ error }}</small>
             </div>
@@ -111,13 +137,4 @@ async function submit() {
 </v-container>
 </template>
 
-<style scoped>
-
-.loginCard {
-  width:300px; 
-  border:thin solid #fff;
-  margin-top:50px; 
-  color:white;
-  padding:20px;
-}
-  </style>
+<style scoped></style>

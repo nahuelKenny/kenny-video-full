@@ -15,9 +15,13 @@ export const useAuth = () => {
         password: string,
         remember = true
     ): Promise<any> {
+        //if user is already authenticated do not continue
+        /*
         if (isAuthenticated.value === true) {
             return;
         }
+        */
+       //if not logued in continue proccedure
         await authentication.login(email, password, remember);
         await fetchUser();
 
@@ -50,7 +54,7 @@ export const useAuth = () => {
         await authentication.logout();
         user.value = null;
 
-        await router.push(config.public.baseUrl);
+        await router.push(config.public.loginUrl);
     }
 
     return {

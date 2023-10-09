@@ -1,8 +1,14 @@
 <script lang="ts" setup>
 import { useTheme } from 'vuetify'
+import { useRouter } from 'vue-router'
 
 const theme = useTheme()
 const { logout } = useAuth();
+const router = useRouter()
+
+const goToHome = () => {
+  return router.push("/")
+}
 
 function toggleTheme () {
   theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
@@ -13,13 +19,13 @@ function toggleTheme () {
   <div>
     <v-app-bar :elevation="0">
       <v-app-bar-title>
-        <NuxtLink :to="`/movies`">
           <v-img
+            class="clickable"
             width="80"
             :aspect-ratio="1"
             src="/img/logo2-2.png"
+            @click="goToHome"
           ></v-img>
-        </NuxtLink>
       </v-app-bar-title>
       <template v-slot:append>
         <v-menu transition="slide-y-transition">

@@ -25,8 +25,10 @@ docker-compose up --build
 ```
 after docker is builded and up u can check in browser at: http://localhost:8080/
 
-note: time was running out and i was asked to help another team, so api rest to OMDB is working as it should,
-but backend integration need some adjustment i can made at weekend.
+update: for testing purposes the guards are setted to "authenticated and guest" users in /movies .
+u can change this going to /pages/movies/index.vue  and pages/movies/[id].vue and changing the
+"definePageMeta" removing the "guest" param, this will make the page accessible only with  
+valid user logged in
 
 for backend u can do the same
 
@@ -80,4 +82,19 @@ ports:
             - '${APP_PORT:-80}:80'
             - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
             - '8000:80' <---this needs to be added (or the port u need)
+
+
+### Troubleshootings
+
+if u are experiencing issues to connect with your sql client, for DBEavers u can try:
+
+1. Right-click your connection, choose "Edit Connection"
+
+2. On the "Connection settings" screen (main screen), click on "Edit Driver Settings"
+
+3. Click on "Driver properties"
+
+4. Change two properties: "useSSL" and "allowPublicKeyRetrieval"
+
+5. Set their values to "false" and "true" by double-clicking on the "value" column
 

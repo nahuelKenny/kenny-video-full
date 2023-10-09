@@ -3,7 +3,7 @@ const localePath = useLocalePath()
 
   definePageMeta({
     layout: 'default',
-    middleware: ["auth"],
+    middleware: ["auth", "guest"],
   })
 
 const movies = ref([])

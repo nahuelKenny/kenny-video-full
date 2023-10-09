@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { defineComponent, ref } from 'vue';
 
   definePageMeta({
     layout: 'external',
@@ -32,16 +31,26 @@ const validate = async () => {
 
     if (valid) {
           error.value = "";
+          try {
           //login with bakend
           await login(credentials.username, credentials.password, true);
           //navigate to home
-          //router.push(config.public.homeUrl);
+          router.push(config.public.homeUrl);
+          } catch (err) {
+          error.value = err as string;
+          //for testing purposes will ignore backend auth and go to /movies that has the "guest" profile 
+          //u can remove that deleting the "guest" param fro definePageMeta in /movies
+          //also disable next line if u want to go with real user auth
+          router.push(config.public.homeUrl);
+      }
       
     } else {
       error.value = "Verifique los campos e intente de nuevo"
     }
 }
-
+const goToRegister = () => {
+  return router.push("register")
+}
 </script>
 
 <template>
@@ -84,6 +93,15 @@ const validate = async () => {
                 @click="validate"
               >
                 Ingresar
+              </v-btn>
+              <v-divider />
+              <v-btn
+                color="warning"
+                class="mt-4"
+                block
+                @click="goToRegister"
+              >
+                No tengo usuario
               </v-btn>
             </div>
           </v-form>
